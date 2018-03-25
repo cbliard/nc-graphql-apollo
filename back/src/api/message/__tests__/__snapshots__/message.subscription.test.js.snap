@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Schema of Contributor (Subscription) should be like snapshot (subscriptions) 1`] = `
+"
+    subscribeMessages: Message
+"
+`;
+
+exports[`Schema of Contributor (Subscription) should be like snapshot (type) 1`] = `
+"
+"
+`;

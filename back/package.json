@@ -1,0 +1,90 @@
+{
+  "name": "nc-graphql-apollo-back",
+  "version": "1.0.0",
+  "description": "This is a codelab graphql apollo.",
+  "scripts": {
+    "test": "jest --forceExit",
+    "start": "NODE_ENV=dev nodemon --watch \"src/**/*.js\" --exec \"webpack --colors && node --inspect dist/server.js\"",
+    "clean": "rimraf dist",
+    "prestart": "npm run clean && copyfiles ./config.js dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tbetous/nc-graphql-apollo.git"
+  },
+  "keywords": [
+    "graphql",
+    "apollo"
+  ],
+  "license": "ISC",
+  "contributors": [
+    {
+      "name": "Thomas Betous",
+      "email": "thomas.betous@zenika.com",
+      "url": "https://twitter.com/tbetous"
+    },
+    {
+      "name": "Antoine Cellier",
+      "email": "antoine.cellier@zenika.com",
+      "url": "https://twitter.com/AntoineCellier3"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/tbetous/nc-graphql-apollo/issues"
+  },
+  "homepage": "https://github.com/tbetous/nc-graphql-apollo#readme",
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "./dist"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "moduleNameMapper": {
+      "^config$": "<rootDir>/config.js"
+    },
+    "collectCoverage": true,
+    "coverageDirectory": "./reports/coverage/",
+    "testResultsProcessor": "jest-junit",
+    "setupFiles": [
+      "babel-polyfill"
+    ]
+  },
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-eslint": "8.2.1",
+    "babel-loader": "7.1.2",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-es2017": "6.24.1",
+    "babel-preset-stage-0": "6.24.1",
+    "copyfiles": "1.2.0",
+    "eslint": "4.17.0",
+    "eslint-loader": "1.9.0",
+    "eslint-plugin-lodash": "2.6.1",
+    "file-url": "2.0.2",
+    "jest-junit": "3.5.0",
+    "nodemon": "1.17.2",
+    "path": "0.12.7",
+    "rimraf": "2.6.2",
+    "supertest": "3.0.0",
+    "webpack": "3.10.0",
+    "webpack-node-externals": "1.6.0"
+  },
+  "dependencies": {
+    "apollo-server-express": "1.3.2",
+    "body-parser": "1.18.2",
+    "express": "4.16.3",
+    "graphql": "0.13.0",
+    "graphql-subscriptions": "0.5.8",
+    "graphql-tools": "2.21.0",
+    "graphql-type-json": "0.2.0",
+    "jest": "22.3.0",
+    "lodash": "4.17.5",
+    "rxjs": "5.5.7",
+    "subscriptions-transport-ws": "0.9.6"
+  }
+}

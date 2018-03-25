@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Schema of Message (Query) should be like snapshot (queries) 1`] = `
+"
+    getMessages : [Message!]!
+"
+`;
+
+exports[`Schema of Message (Query) should be like snapshot (type) 1`] = `
+"
+    
+    type Message {
+        id: ID!
+        date: String!
+        sender: Sender!
+        content: String!
+        localisation: String!
+        status: String!
+    }
+
+    
+    type Sender {
+        pseudo: String!
+        firstName: String!
+        lastName: String!
+    }
+
+"
+`;

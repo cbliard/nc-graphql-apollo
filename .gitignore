@@ -1,0 +1,8 @@
+node_modules
+dist/
+reports/
+*.log
+.vscode/
+**/.DS_Store
+npm-debug.log.*
+junit.xml

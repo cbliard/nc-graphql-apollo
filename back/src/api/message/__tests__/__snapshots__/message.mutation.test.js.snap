@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Schema of Message (Mutation) should be like snapshot (mutations) 1`] = `
+"
+    saveMessage(message: MessageInput): Message
+"
+`;
+
+exports[`Schema of Message (Mutation) should be like snapshot (type) 1`] = `
+"
+    
+    input MessageInput {
+        content: String!
+        localisation: String!
+        status: String!
+        sender: SenderInput!
+    }
+
+    
+    input SenderInput {
+        pseudo: String!
+        firstName: String!
+        lastName: String!
+    }
+
+"
+`;
