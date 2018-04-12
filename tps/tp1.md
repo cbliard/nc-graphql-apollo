@@ -52,7 +52,7 @@ L’objectif de ce premier TP va être d’écrire le code permettant à l’app
 
 ### TP1.1 : Mise en place d’apollo client dans le projet
 
-Dans un premier temps il faut mettre en place l’utilisation du client Apollo dans Angular. Toutes les informations sont disponibles à l’adresse suivante : [http://dev.apollodata.com/angular2/](http://dev.apollodata.com/angular2/) . Afin d'accélérer la procédure, nous vous donnons les étapes à réaliser :
+Dans un premier temps il faut mettre en place l’utilisation du client Apollo dans Angular. Toutes les informations sont disponibles à l’adresse suivante : http://dev.apollodata.com/angular2/. Afin d'accélérer la procédure, nous vous donnons les étapes à réaliser :
 
 #### Etape 1 : Installer les package npm
 
@@ -60,46 +60,36 @@ Installer apollo-client, apollo-angular et graphql-tag sur votre projet : `npm i
 
 #### Etape 2 : Mise en place du client Apollo
 
-Dans la configuration de votre application, il va falloir fournir trois modules `ApolloModule`, `HttpLinkModule`, `HttpClientModule`. Ensuite, créer une instance d'apollo au démarrage de l'application. L’instanciation doit se faire ainsi dans `service/app.module.ts`.
+Dans la configuration de votre application, il va falloir fournir trois modules `ApolloModule`, `HttpLinkModule`, `HttpClientModule`. Ensuite, créer une instance d'apollo au démarrage de l'application. L’instanciation doit se faire ainsi dans `graphql/graphql.service.ts`.
 
 ```javascript
-import { HttpClientModule } from '@angular/common/http'
-import { ApolloModule, Apollo } from 'apollo-angular'
-import { ApolloClient } from 'apollo-client'
+import { Injectable } from '@angular/core'
+import { Apollo } from 'apollo-angular'
+import { HttpLink } from 'apollo-angular-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http'
 
-@NgModule({
-  declarations: [...],
-  imports: [
-    HttpClientModule,
-    HttpLinkModule,
-    ApolloModule,
-    ...
-  ],
-  providers: [...],
-  bootstrap: [...]
-})
-export class AppModule {
+@Injectable()
+export class GraphqlService {
   constructor(
     apollo: Apollo,
-    httpLink: HttpLink
+    httpLink: HttpLink,
+    inMemoryCache: InMemoryCache,
   ) {
     apollo.create({
-      link: httpLink.create({ uri: 'api/graphql' }),
-      cache: new InMemoryCache()
+      link: httpLink.create({ uri: '/api/graphql' }),
+      cache: inMemoryCache,
     })
   }
 }
 ```
 
-L’option `link` permet de signaler où angular devra envoyer une requête pour interroger le serveur graphql. Dans notre cas l’adresse est http://localhost:3000/api/graphql, mais un proxy bind toute requête ayant le pattern `/api/*` au port 3000.
+L’option `link` permet de signaler où angular devra envoyer une requête pour interroger le serveur graphql. Dans notre cas l’adresse est http://localhost:3000/api/graphql, un proxy bind toute requête ayant le pattern `/api/*` sur le port 3000.
 
 ### TP1.2 : Envoi et récéption de la requête Apollo
 
 #### Etape 1 : Modification du service
 
-Maintenant que la configuration Apollo est en place sur notre application angular, il va falloir modifier le `service tchat.service.ts` pour y injecter le service `Apollo` mise à disposition par `ApolloModule`.
+Maintenant que la configuration Apollo est en place, il faut injecter le service `Apollo` mise à disposition par `ApolloModule` dans le service `tchat.service.ts`.
 
 ```javascript
 import { Apollo } from 'apollo-angular'
@@ -111,7 +101,7 @@ export class TchatService {
 }
 ```
 
-La variable `messages` n’a plus lieux d’être, supprimez la. Il faut à présent modifier la méthode `getMessages` pour envoyer une requête au serveur graphql. Cela peut être réalisé via l’objet `apollo` injecté plus haut et la méthode `query` qui prend en paramètre la requête à exécuter. Attention la requête doit être formatée pour être comprise par l’objet `apollo`. Pour cette raison il existe une fonction de templating `gql`. Attention, nous vous conseillons de mettre votre requête dans une variable car dans la suite du TP elle sera réutilisée à différents endroits. Voici à quoi devrait ressembler votre méthode :
+La variable `messages` n’a plus lieux d’être, supprimez la. Il faut à présent modifier la méthode `getMessages` pour recupérer les données du serveur graphql. Cela peut être réalisé via l’objet `apollo` injecté plus haut et la méthode `query` qui prend en paramètre la requête à exécuter. Attention la requête doit être formatée pour être comprise par l’objet `apollo`. Pour cette raison il existe une fonction de templating `gql`. Nous vous conseillons de mettre votre requête dans une variable car dans la suite du TP elle sera réutilisée à différents endroits. Voici à quoi devrait ressembler votre méthode :
 
 ```javascript
 import { Apollo } from 'apollo-angular'
@@ -134,7 +124,7 @@ export class TchatService {
 
 Il ne reste plus qu'à modifier le composant pour afficher le résultat. La méthode `getMessages` du service retourne maintenant un `Observable`. Il y a donc plusieurs façons d’afficher les messages. Vous pouvez soit utiliser la pipe `async` mais cette méthode vous demandera de travailler le résultat de la requête au préalable, soit assigner le retour de la fonction `subscribe` dans une variable messages.
 
-Le résultat retourné par la requête est un objet de la forme suivante :
+Le résultat retourné par la requête est sous la forme suivante :
 
 ```javascript
 {
