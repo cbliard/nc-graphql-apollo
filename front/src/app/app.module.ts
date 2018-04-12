@@ -4,10 +4,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { HttpLinkModule } from 'apollo-angular-link-http'
 import { ApolloModule } from 'apollo-angular'
+import { GraphqlModule } from './graphql'
 
 import { InMemoryCache } from 'apollo-cache-inmemory'
-
-import { GraphqlService } from './service/graphql/graphql.service'
 
 import { AppComponent } from './app.component'
 
@@ -24,19 +23,10 @@ library.add(faTerminal, faQuestionCircle, faRegularCheckCircle, faSolidCheckCirc
   ],
   imports: [
     BrowserModule,
+    GraphqlModule,
     HttpClientModule,
-    HttpLinkModule,
-    ApolloModule,
     FontAwesomeModule
-  ],
-  providers: [
-    { provide: InMemoryCache, useValue: new InMemoryCache() },
-    GraphqlService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-  constructor(
-    private graphqlService : GraphqlService
-  ) {}
-}
+export class AppModule {}

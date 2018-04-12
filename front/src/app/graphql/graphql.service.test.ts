@@ -2,7 +2,6 @@ import { TestBed, inject } from '@angular/core/testing'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { ApolloModule, Apollo } from 'apollo-angular'
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http'
-jest.mock('apollo-cache-inmemory')
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { GraphqlService } from './graphql.service'
 
@@ -29,7 +28,7 @@ describe('GraphqlService', () => {
   })
 
   it('should be created', inject([GraphqlService], (service: GraphqlService) => {
-    expect(service).toBeTruthy();
+    expect(service).toBeTruthy()
   }))
 
   it('should create httplink correctly', inject([GraphqlService], (service: GraphqlService) => {

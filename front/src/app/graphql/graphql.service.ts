@@ -5,11 +5,10 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 
 @Injectable()
 export class GraphqlService {
-  constructor(apollo: Apollo, httpLink: HttpLink, inMemoryCache: InMemoryCache) { 
+  constructor(apollo: Apollo, httpLink: HttpLink, inMemoryCache: InMemoryCache) {
     apollo.create({
       link: httpLink.create({ uri: '/api/graphql' }),
       cache: inMemoryCache
     })
   }
-  
 }
