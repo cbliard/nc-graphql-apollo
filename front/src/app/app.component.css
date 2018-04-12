@@ -1,0 +1,35 @@
+.header-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 9999;
+}
+
+.content {
+    padding-top: 20px;
+    margin-top: 50px;
+}
+
+
+.message-header {
+    color: #888888;
+    font-size: 0.8rem;
+}
+
+.message-avatar {
+    height: 75px;
+    width: 75px;
+}
+
+.spacer {
+    height: 75px;
+    width: 75px;
+}
+
+@media (max-width: 991.98px) {
+    .message-content {
+        width: 100%;
+    }
+ }
