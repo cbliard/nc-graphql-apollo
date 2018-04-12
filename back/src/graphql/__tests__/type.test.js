@@ -1,6 +1,6 @@
-import { types as messageQueryTypes } from '../../api/message/message.query'
-import { types as messageMutationTypes } from '../../api/message/message.mutation'
-import { types as messageSubscriptionsTypes } from '../../api/message/message.subscription'
+import { types as messageQueryTypes } from '../../schema/message/message.query'
+import { types as messageMutationTypes } from '../../schema/message/message.mutation'
+import { types as messageSubscriptionsTypes } from '../../schema/message/message.subscription'
 import types from '../type'
 
 const typesExpected = `

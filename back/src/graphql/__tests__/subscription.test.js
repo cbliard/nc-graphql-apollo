@@ -1,5 +1,5 @@
 import { merge } from 'lodash'
-import { subscriptions as messageSubscriptions, resolvers as messageSubscriptionResolvers } from '../../api/message/message.subscription'
+import { subscriptions as messageSubscriptions, resolvers as messageSubscriptionResolvers } from '../../schema/message/message.subscription'
 import { subscriptions, resolvers } from '../subscription'
 
 const subscriptionsExpected = `

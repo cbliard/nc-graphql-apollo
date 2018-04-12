@@ -1,0 +1,16 @@
+version: '3'
+services:
+  app:
+    build: scripts/angular
+    image: dev-angular
+    volumes:
+      - ./front:/usr/src/front
+    ports:
+      - 4200:4200
+  api:
+    build: scripts/node
+    image: dev-node-graphql
+    volumes:
+      - ./back:/usr/src/back
+    ports: # dev purpose only
+      - 3000:3000

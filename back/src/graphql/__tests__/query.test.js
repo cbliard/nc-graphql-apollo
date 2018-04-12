@@ -1,5 +1,5 @@
 import { merge } from 'lodash'
-import { queries as messageQueries, resolvers as messageQueryResolvers } from '../../api/message/message.query'
+import { queries as messageQueries, resolvers as messageQueryResolvers } from '../../schema/message/message.query'
 import { queries, resolvers } from '../query'
 
 const queriesExpected = `

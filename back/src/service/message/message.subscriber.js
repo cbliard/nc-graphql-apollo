@@ -11,6 +11,7 @@ export const eventBus = new Subject()
 
 export const init = async function() {
     eventBus
+        .filter(message => isFromCanardMan(message))
         .subscribe(message => pubsub.publish('subscribeMessages', message))
     eventBus
         .filter(message => Config.enableSuperCoinFeature && !isFromCanardMan(message))
