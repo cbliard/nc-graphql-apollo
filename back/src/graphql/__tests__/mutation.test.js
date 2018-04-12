@@ -1,5 +1,5 @@
 import { merge } from 'lodash'
-import { mutations as messageMutations, resolvers as messageMutationResolvers } from '../../api/message/message.mutation'
+import { mutations as messageMutations, resolvers as messageMutationResolvers } from '../../schema/message/message.mutation'
 import { mutations, resolvers } from '../mutation'
 
 const mutationExpected = `
