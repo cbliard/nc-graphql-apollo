@@ -2,11 +2,11 @@
 
 ## TP1 : Récupérer et afficher des données avec GraphiQL
 
-Dans ce premier TP nous allons récupérer les données misent à disposition par notre serveur via l’api graphql. Dans un premier temps visiter la page http://localhost:3000/api/graphql.
+Dans ce premier TP nous allons récupérer les données misent à disposition par notre serveur, via l’api graphql, à l'adresse suivante http://localhost:3000/api/graphql.
 
-Cette interface permet de réaliser des requêtes facilement vers le serveur. Sur l’écran en haut la droite, le bouton “Docs” permet d’explorer l’api. Dans “query” vous pourrez trouver les opérations de lecture, et dans “mutation” les opérations d’écriture.
+Cette interface permet d'envoyer des requêtes au serveur. En haut à droite, le bouton “Docs” permet d’explorer les types de données exposées. Dans “query” vous trouverez les opérations de lecture, et dans “mutation” les opérations d’écriture.
 
-Dans le champs de texte à gauche, vous allez pouvoir écrire vos requêtes graphql.
+Dans le champs de texte à gauche, vous pouvez écrire vos requêtes graphql.
 
 Essayez la requête suivante :
 
@@ -48,11 +48,11 @@ Vous venez de récupérer tous les messages stockés actuellement par le serveur
 }
 ```
 
-L’objectif de se premier TP va être d’écrire le code permettant à l’application Angular de récupérer les messages avec la requête que nous avons vu plus haut. Le code nécessaire est à écrire dans `tchat.service.ts`. Actuellement les messages sont écris en dur dans le code. Il faut donc à présent assigner correctement la valeur de la variable `message`.
+L’objectif de ce premier TP va être d’écrire le code permettant à l’application Angular de récupérer les messages avec la requête que nous avons vu plus haut. Le code nécessaire est à écrire dans `tchat.service.ts`. Actuellement les messages sont écris en dur dans le code. Il faut donc à présent assigner correctement la valeur de la variable `message`.
 
 ### TP1.1 : Mise en place d’apollo client dans le projet
 
-Dans un premier temps il faut mettre en place l’utilisation du client Apollo dans Angular. Toutes les informations sont disponibles à l’adresse suivante : http://dev.apollodata.com/angular2/ . Afin d'accélérer la procédure, nous vous donnons à la suite de ce paragraphe les étapes à réaliser :
+Dans un premier temps il faut mettre en place l’utilisation du client Apollo dans Angular. Toutes les informations sont disponibles à l’adresse suivante : [http://dev.apollodata.com/angular2/](http://dev.apollodata.com/angular2/) . Afin d'accélérer la procédure, nous vous donnons les étapes à réaliser :
 
 #### Etape 1 : Installer les package npm
 
@@ -60,7 +60,7 @@ Installer apollo-client, apollo-angular et graphql-tag sur votre projet : `npm i
 
 #### Etape 2 : Mise en place du client Apollo
 
-Dans la configuration de votre application, il va falloir fournir trois modules `ApolloModule`, `HttpLinkModule`, `HttpClientModule`. Ensuite, créer une instance d'apollo au démarrage de l'application. L’instanciation doit se faire ainsi dans `app.module.ts`.
+Dans la configuration de votre application, il va falloir fournir trois modules `ApolloModule`, `HttpLinkModule`, `HttpClientModule`. Ensuite, créer une instance d'apollo au démarrage de l'application. L’instanciation doit se faire ainsi dans `service/app.module.ts`.
 
 ```javascript
 import { HttpClientModule } from '@angular/common/http'
