@@ -1,1 +1,9 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+
+textarea {
+    resize: none;
+}
+
+li {
+    list-style-type: none;
+}

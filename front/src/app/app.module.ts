@@ -5,17 +5,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { HttpLinkModule } from 'apollo-angular-link-http'
 import { ApolloModule } from 'apollo-angular'
 import { GraphqlModule } from './graphql'
+import { ContentModule } from './content'
 
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
 import { AppComponent } from './app.component'
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCheckCircle as faRegularCheckCircle} from '@fortawesome/free-regular-svg-icons'
-import { faTerminal, faQuestionCircle, faCheckCircle as faSolidCheckCircle} from '@fortawesome/free-solid-svg-icons'
-
-library.add(faTerminal, faQuestionCircle, faRegularCheckCircle, faSolidCheckCircle)
-
+import { TchatService } from './service'
 
 @NgModule({
   declarations: [
@@ -24,8 +20,12 @@ library.add(faTerminal, faQuestionCircle, faRegularCheckCircle, faSolidCheckCirc
   imports: [
     BrowserModule,
     GraphqlModule,
+    ContentModule,
     HttpClientModule,
     FontAwesomeModule
+  ],
+  providers: [
+    TchatService
   ],
   bootstrap: [AppComponent]
 })

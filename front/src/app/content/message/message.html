@@ -1,0 +1,55 @@
+<div class="row" *ngIf="message.sender.pseudo == 'Canard Man';then canardMessage else userMessage"></div>
+
+<ng-template #canardMessage>
+    <div class="d-flex flex-row">
+        <div class="message-avatar mx-3 my-2">
+            <img src="assets/img/canardMan.png" height="75px" width="75px" class="rounded-circle" />
+        </div>
+        <div class="message-content d-flex flex-column">
+            <div class="alert alert-dark border-0">
+                <div class="message-header d-flex flex-row mb-1">
+                    <span>Canard Man :</span>
+                </div>
+                <div class="message-text">
+                    <span>{{ message.content }}</span>
+                </div>
+                <div class="message-header d-flex flex-row mt-2">
+                    <span *ngIf="message.status == 'OK'">
+                        <fa-icon [icon]="['fas', 'check-circle']" transform=""></fa-icon>
+                    </span>
+                    <span *ngIf="message.status == 'PENDING'">
+                        <fa-icon [icon]="['fas', 'circle-notch']" [spin]="true"></fa-icon>
+                    </span>
+                    <span class="ml-1">Reçu le {{message.date | date:'dd/MM/yyyy à HH:mm'}} </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #userMessage>
+    <div class="d-flex flex-row-reverse text-right">
+        <div class="message-avatar mx-3 my-2">
+            <img src="assets/img/devMan.png" height="75px" width="75px" class="rounded-circle" />
+        </div>
+        <div class="message-content alert alert-dark border-0">
+            <div class="d-flex flex-column">
+                <div class="message-header d-flex flex-row-reverse mb-1">
+                    <span>Developer Man :</span>
+                </div>
+                <div class="message-text">
+                    <span>{{ message.content }}</span>
+                </div>
+                <div class="message-header d-flex flex-row-reverse mt-2">
+                    <span *ngIf="message.status == 'OK'">
+                        <fa-icon [icon]="['fas', 'check-circle']" transform=""></fa-icon>
+                    </span>
+                    <span *ngIf="message.status == 'PENDING'">
+                        <fa-icon [icon]="['fas', 'circle-notch']" [spin]="true"></fa-icon>
+                    </span>
+                    <span class="mr-1">Reçu le {{message.date | date:'dd/MM/yyyy à HH:mm'}} </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

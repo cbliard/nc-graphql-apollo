@@ -1,0 +1,25 @@
+<header>
+    <nav class="header-toolbar navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">
+            <fa-icon [icon]="['fas', 'terminal']"></fa-icon>
+            Rubber Duck Debugging
+        </a>
+    </nav>
+</header>
+<div #scrollMe class="content container-fluid"  [scrollTop]="scrollMe.scrollHeight">
+    <ul class="px-0">
+        <li *ngFor="let message of messages; let odd=odd; let even=even;">
+            <message class="col-6" [message]="message"></message>
+        </li>
+    </ul>
+</div>
+<footer>
+    <div class="sticky-footer bg-primary p-2">
+        <div class="d-flex flex-row">
+            <textarea class="form-control" [disabled]=spamGuard [(ngModel)]="messageContent" rows="2" placeholder="Message ..." aria-label="Message ..."></textarea>
+            <button class="btn btn-success ml-2" [disabled]="(spamGuard || messageContent.length == 0)" type="button" (click)="sendMessage()">
+                <fa-icon [icon]="['fas', 'paper-plane']" size="2x"></fa-icon>
+            </button>
+        </div>
+    </div>
+</footer>
