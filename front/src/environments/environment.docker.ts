@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  webSocket: 'ws://api:3001/subscriptions',
+  webSocket: 'ws://localhost:3000/subscriptions',
 }
