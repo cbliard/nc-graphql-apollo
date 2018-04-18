@@ -6,6 +6,7 @@ import { WebSocketLink } from 'apollo-link-ws'
 import { split } from 'apollo-link'
 import { getMainDefinition } from 'apollo-utilities'
 import { environment } from '../../environments/environment'
+import { OperationDefinitionNode } from 'graphql';
 
 @Injectable()
 export class GraphqlService {
@@ -14,11 +15,6 @@ export class GraphqlService {
     httpLink: HttpLink,
     inMemoryCache: InMemoryCache,
   ) {
-    // apollo.create({
-    //   link: httpLink.create({ uri: '/api/graphql' }),
-    //   cache: inMemoryCache
-    // })
-
     // Create an http link:
     const http = httpLink.create({
       uri: 'api/graphql',
@@ -26,17 +22,13 @@ export class GraphqlService {
 
     // Create a WebSocket link:
     const ws = new WebSocketLink({
-      uri: environment.webSocket,
-      options: {
-        reconnect: true,
-        timeout: 30000,
-      },
+      uri: environment.webSocket
     })
 
     const link = split(
       // split based on operation type
       ({ query }) => {
-        const { kind, operation } = getMainDefinition(query)
+        const { kind, operation } = (getMainDefinition(query) as OperationDefinitionNode)
         return kind === 'OperationDefinition' && operation === 'subscription'
       },
       ws,

@@ -1,7 +1,7 @@
 FROM node:9-alpine
 
 WORKDIR /usr/src/front
-RUN echo $(ls)
+
 #Linux setup
 RUN apk update \
     && apk add --update alpine-sdk \

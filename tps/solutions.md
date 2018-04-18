@@ -203,3 +203,95 @@ saveMessage(message) {
 }
 ```
 
+## TP5 : Subscription
+
+```javascript
+@Injectable()
+export class GraphqlService {
+  constructor(
+    apollo: Apollo,
+    httpLink: HttpLink,
+    inMemoryCache: InMemoryCache,
+  ) {
+    // Create an http link:
+    const http = httpLink.create({
+      uri: 'api/graphql',
+    })
+
+    // Create a WebSocket link:
+    const ws = new WebSocketLink({
+      uri: environment.webSocket
+    })
+
+    const link = split(
+      // split based on operation type
+      ({ query }) => {
+        const { kind, operation } = (getMainDefinition(query) as OperationDefinitionNode)
+        return kind === 'OperationDefinition' && operation === 'subscription'
+      },
+      ws,
+      http,
+    )
+
+    apollo.create({
+      link: link,
+      cache: new InMemoryCache(),
+    })
+  }
+}
+```
+
+```javascript
+
+@Injectable()
+export class TchatService {
+
+    private messageQuery: QueryRef<any>
+
+    constructor(public apollo: Apollo) {
+        this.messageQuery = this.apollo.watchQuery({
+            query: GET_REQUEST
+        })
+        this.subscribeMessages()
+    }
+
+    getMessages() {
+        return this.messageQuery
+    }
+
+    saveMessage(message) {
+        /// [...]
+    }
+
+    subscribeMessages() {
+        this.messageQuery.subscribeToMore({
+            document: SUBSCRIBE_MESSAGES,
+            updateQuery: (prev: any, { subscriptionData }) => {
+                let messages = prev.getMessages.slice(0)
+                messages.push(subscriptionData.data.subscribeMessages)
+                return {
+                    getMessages: messages
+                }
+            }
+        })
+    }
+}
+
+// [...]
+
+const SUBSCRIBE_MESSAGES = gql`
+subscription {
+  subscribeMessages {
+    sender {
+        pseudo
+        firstName
+        lastName
+    }
+    content
+    localisation
+    date
+    status
+  }
+}
+`
+```
