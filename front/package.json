@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
+    "start:docker": "ng serve --proxy-config proxy.docker.conf.json --host 0.0.0.0 --env=docker",
     "build": "ng build --prod",
     "test": "jest",
     "lint": "ng lint",
@@ -37,6 +38,7 @@
     "apollo-angular-link-http": "^1.0.2",
     "apollo-cache-inmemory": "^1.1.12",
     "apollo-client": "^2.2.8",
+    "apollo-link-ws": "1.0.7",
     "bootstrap": "^4.1.0",
     "core-js": "^2.4.1",
     "graphql": "^0.13.2",

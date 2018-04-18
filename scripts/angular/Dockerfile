@@ -13,4 +13,4 @@ RUN apk update \
 #Angular CLI
 RUN npm install -g @angular/cli@1.7.3
 
-ENTRYPOINT npm install && npm start
+ENTRYPOINT npm install && npm run start:docker
