@@ -26,7 +26,7 @@ export class TchatComponent implements OnInit {
         this.spamGuard = true
         const message = {
             sender: {
-                pseudo: 'Toto',
+                pseudo: 'Developer Man',
                 firstName: 'Jean-Michel',
                 lastName: 'Graphi'
             },

@@ -25,7 +25,7 @@ firstName: String!
 lastName: String!
 ```
 
-Maintenant connectez-vous à graphiql (http://localhost:3000/api/graphql) et tenter d’ajouter un message avec une requête graphql. Les liens suivants vous seront utiles :
+Maintenant connectez-vous à graphiql (http://localhost:4200/api/graphql) et tenter d’ajouter un message avec une requête graphql. Les liens suivants vous seront utiles :
 
 * http://graphql.org/learn/queries/#variables
 * http://graphql.org/learn/queries/#mutations
@@ -44,7 +44,7 @@ L’objet `apollo` que nous avons injecté plus tôt contient une fonction mutat
 
 #### Etape 3 : Modification du composant
 
-Modifier le composant `tchat.component.ts` pour appeler le service d’envoi de message à partir de la méthode `sendMessage`. La variable `spamGuard` permet de bloquer la saisie d’un nouveau message le temps de la requête. Un fois votre requête d’ajout de message terminé il faudra assigner `false` à `spamGuard` et une chaîne de caractère vide à message. Comme pour `getMessages`, la méthode `mutate` d’apollo vous renvoie un observable.
+Modifier le composant `tchat.component.ts` pour appeler le service d’envoi de message à partir de la méthode `sendMessage`. La variable `spamGuard` permet de bloquer la saisie d’un nouveau message le temps de la requête. Une fois votre requête d’ajout de message terminé il faudra assigner `false` à `spamGuard` et une chaîne de caractère vide à message. Comme pour `getMessages`, la méthode `mutate` d’apollo vous renvoie un observable.
 
 Squelette de la fonction :
 
@@ -53,7 +53,7 @@ sendMessage() {
     this.spamGuard = true
     const message = {
         sender: {
-            pseudo: 'SuperDev',
+            pseudo: 'Developer Man',
             firstName: 'Jean-Michel',
             lastName: 'GraphQL'
         },
@@ -77,4 +77,4 @@ Il est possible lors de l’exécution d’une mutation de renseigner des propri
 
 Le lien suivant vous sera utile pour comprendre comment renseigner le paramètre refetchQueries : https://www.apollographql.com/docs/react/features/cache-updates.html#refetchQueries
 
-Enfin il ne faut pas oublier de changer l’appel de la fonction `query` de `getMessage` dans `tchat.service.ts` en `watchQuery`. La différence et que query est un observable qui se termine après que le premier résultat ai été trouvé tandis que `watchQuery` écoute continuellement les valeurs enregistrées dans le store.
+Enfin il ne faut pas oublier de changer l’appel de la fonction `query` de `getMessage` dans `tchat.service.ts` en `watchQuery`. La différence et que query est un observable qui se termine après que le premier résultat ai été trouvé tandis que `watchQuery` écoute continuellement les valeurs enregistrées dans le cache.
