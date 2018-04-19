@@ -50,17 +50,11 @@ Vous venez de récupérer tous les messages stockés actuellement par le serveur
 
 L’objectif de ce premier TP va être d’écrire le code permettant à l’application Angular de récupérer les messages avec la requête que nous avons vu plus haut. Le code nécessaire est à écrire dans `src/app/service/tchat.service.ts`. Actuellement les messages sont écris en dur dans le code. Il faut donc à présent assigner correctement la valeur de la variable `message`.
 
-### TP1.1 : Mise en place d’apollo client dans le projet
-
-Dans un premier temps il faut mettre en place l’utilisation du client Apollo dans Angular. Toutes les informations sont disponibles à l’adresse suivante : http://dev.apollodata.com/angular2/. Afin d'accélérer la procédure, nous vous donnons les étapes à réaliser :
-
-<!-- #### Etape 1 : Installer les package npm
-
-Installer apollo-client, apollo-angular et graphql-tag sur votre projet : `npm install graphql apollo-client apollo-angular apollo-cache-inmemory apollo-angular-link-http graphql-tag --save` -->
-
 #### Etape 1 : Mise en place du client Apollo
 
-Dans la configuration de votre application, il va falloir fournir trois modules `ApolloModule`, `HttpLinkModule`, `HttpClientModule`. Ensuite, créer une instance d'apollo au démarrage de l'application. L’instanciation doit se faire ainsi dans `src/graphql/graphql.service.ts`.
+Dans un premier temps il faut mettre en place l’utilisation du client Apollo dans Angular. Toutes les informations sont disponibles à l’adresse suivante : http://dev.apollodata.com/angular2/. Afin d'accélérer la procédure, nous vous donnons les étapes à réaliser.
+
+Dans la configuration du module ̀`src/app/graphql/graphql.module.ts` de votre application, les trois modules `ApolloModule`, `HttpLinkModule`, `HttpClientModule` ont été importés afin de créer le client Apollo. Le module `src/app/graphql/graphql.module.ts` est importé dans le module principale de l'application. Vous n'avez donc pas à vous occuper de la mécanique des modules. Cependant il va falloir modifier le service `src/graphql/graphql.service.ts` pour créer le client Apollo. La création du client doit se faire ainsi :
 
 ```javascript
 import { Injectable } from '@angular/core'
